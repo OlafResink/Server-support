@@ -32,16 +32,19 @@ fs.readdir("./commands/", (err, files) => {
 client.on("guildMemberAdd", member =>{
 
     var role = member.guild.roles.cache.get('754005107099697172');
+    var roleCat = member.guild.roles.cache.get('754005087281741904');
 /*    var noRole = `Something went wrong with autorole. ${member} hasn't got his roles!! Please give him his role manually('step 1').`
 
     var errorChannel = member.guild.channels.cache.get("754059320974377030");
     if(!errorChannel) return message.reply("Woops, something went wrong... Please contact an admin.");
 */    
     if(!role) return; //errorChannel.send(noRole);
+    if(!roleCat) return; //errorChannel.send(noRole);
 
     member.roles.add(role);
+    member.roles.add(roleCat);
 
-
+    
 
 
 })
