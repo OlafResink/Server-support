@@ -25,7 +25,7 @@ module.exports.run = async (client, message, args) => {
             name: command.help.name,
             category: command.help.category,
             description: command.help.description,
-            use: commandList.help.use
+            use: command.help.use
         };
 
         commandList.push(item);
