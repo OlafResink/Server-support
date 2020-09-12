@@ -8,6 +8,8 @@ module.exports.run = async(client, message, args) => {
     .setColor("#FF2200")
     .setFooter("Server support")
 
+    message.reply(helpEmbed)
+
 }
 
 module.exports.help = {

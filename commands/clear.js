@@ -2,7 +2,7 @@ const discord = require("discord.js");
 
 module.exports.run = async (client, message, args) => {
 
-    if (!message.mem.hasPermissions("MANAGE_MESSAGES")) return message.reply("You don't have acces to this command!");
+    if (!message.member.hasPermissions("MANAGE_MESSAGES")) return message.reply("You don't have acces to this command!");
 
     if (!args[0]) return message.reply("You didn't tell me how many messages I have to remove");
 

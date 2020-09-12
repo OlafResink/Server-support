@@ -1,7 +1,7 @@
 const discord = require("discord.js");
 
 module.exports.run = async (client, message, args) => {
-
+/*
     try {
 
         var text = "**Server support**\n\n**__Commands__**\n";
@@ -14,7 +14,7 @@ module.exports.run = async (client, message, args) => {
         message.reply("Woops, something went wrong. Please contact an admin.");
     }
 
-
+*/
 
     var commandList = [];
 
