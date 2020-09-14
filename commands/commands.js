@@ -1,26 +1,29 @@
 const discord = require("discord.js");
 
 module.exports.run = async (client, message, args) => {
-/*
-    try {
-
-        var text = "**Server support**\n\n**__Commands__**\n";
-
-        message.author.send(text);
-
-        message.reply("I have send you all available commands in your DM.");
-
-    } catch (error) {
-        message.reply("Woops, something went wrong. Please contact an admin.");
-    }
-
-*/
+    /*
+        try {
+    
+            var commandsEmbed = new discord.MessageEmbed()
+            .setTitle("**Server Support**")
+            .addFields()
+            .setFooter("command list");
+    
+            message.author.send(commandsEmbed);
+    
+            message.reply("I have send you all available commands in your DM.");
+    
+        } catch (error) {
+            message.reply("Woops, something went wrong. Please contact an admin.");
+        }
+    
+    */
 
     var commandList = [];
 
     client.commands.forEach(command => {
 
-        var item = {
+        var constructor = {
 
             name: command.help.name,
             category: command.help.category,
@@ -28,83 +31,52 @@ module.exports.run = async (client, message, args) => {
             use: command.help.use
         };
 
-        commandList.push(item);
+        commandList.push(constructor);
 
     });
 
+    var response = "**Server Support**\n";
 
-    var responseMain = "";
-
-    if (commandList[i]["category"] == "Main") {
-
-        for (var i = 0; i < commandList.length; i++) {
-
-            responseMain += `${commandList[i]["use"]} - ${commandList[i]["description"]} \r\n`
+    var main = "\n**__Main commands__**\n";
+    var support = "\n**__Support commands__**\n";
+    var other = "\n**__Other commands__**\n";
+    //  var admin = "**__Admin commands__**\n";
 
 
-        }
+    for (let i = 0; i < commandList.length; i++) {
+        const command = commandList[i];
 
-    }
+        if (command["category"] == "main") {
+            main += `${command["use"]}: ${command["description"]}\n`;
 
-    var responseSupport = "";
+        } else if (command["category"] == "support") {
+            support += `${command["use"]}: ${command["description"]}\n`;
 
-    if (commandList[i]["category"] == "support") {
+        } else if (command["category"] == "other") {
+            other += `${command["use"]}: ${command["description"]}\n`;
 
-        for (var i = 0; i < commandList.length; i++) {
+        }/* else if (command["category"] == "admin") {
+            admin += `${command["use"]}: ${command["description"]}\n`;
 
-            responseSupport += `${commandList[i]["use"]} - ${commandList[i]["description"]} \r\n`
-
-
-        }
-
-    }
-
-    var responseother = "";
-
-    if (commandList[i]["category"] == "other") {
-
-        for (var i = 0; i < commandList.length; i++) {
-
-            responseother += `${commandList[i]["use"]} - ${commandList[i]["description"]} \r\n`
-
-
-        }
+        }*/
 
     }
 
-    var responseAdmin = "";
+    response += main;
+    response += support;
+    response += other;
+//  response += admin;
 
-    if (commandList[i]["category"] == "Admin") {
-
-        for (var i = 0; i < commandList.length; i++) {
-
-            responseAdmin += `${commandList[i]["use"]} - ${commandList[i]["description"]} \r\n`
-
-
-        }
-
-    }
-
-        var text = `**Server support**\n\n**__Main commands__**\n${responseMain}\n\n**__Support__**\n${responseSupport}\n\n**__Other__**\n${responseOther}`;
-        var textAdmin = `**Server support**\n\n**__Main Commands__**\n${responseMain}\n\n**__Support__**\n${responseSupport}\n\n**__Other__**\n${responseOther}\n\n**__Admin__**\n${responseAdmin}`;
-    
-        var roleAdmin = member.guild.roles.cache.get('754005107099697172');
-        if (message.member.hasRole(roleAdmin)) {
-
-            message.author.send(textAdmin);
-
-        } else message.author.send(text);
-
-        message.reply("I have send you all available commands in your DM.");
-
-    
-
-
+    message.author.send(response).then(() => {
+        message.channel.send("I have send you all available commands in your DM.");
+    }).catch(() => {
+        message.channel.send("Somehow I failed to DM you the list of commands. Do you have you DM turned off?");
+    });
 }
 
 module.exports.help = {
     name: "commands",
     category: "support",
     description: "send an DM with all available commands.",
-    use: "!!commands"
+    use: "`!!commands`"
 }

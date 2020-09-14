@@ -38,5 +38,5 @@ module.exports.help = {
     name: "clear",
     category: "admin",
     description: "Remove the last X messages.",
-    use: "!!clear <amount>"
+    use: "`!!clear <amount>`"
 }

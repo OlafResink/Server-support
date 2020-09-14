@@ -16,5 +16,5 @@ module.exports.help = {
     name: "help",
     category: "support",
     description: "shows you where you can get help.",
-    use: "!!help"
+    use: "`!!help`"
 }

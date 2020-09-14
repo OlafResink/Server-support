@@ -25,5 +25,5 @@ module.exports.help = {
     name: "party",
     category: "main",
     description: "sends a party request.",
-    use: "!!party"
+    use: "`!!party`"
 }

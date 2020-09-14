@@ -62,8 +62,6 @@ client.on("message", async message => {
 
     if (message.channel.type == "dm") return;
 
-    if(!message.content.startsWith(prefix)) return;
-
     var prefix = botConfig.prefix;
 
     var messageArray = message.content.split(" ");
@@ -72,6 +70,7 @@ client.on("message", async message => {
 
     var arguments = messageArray.slice(1);
 
+    if(!message.content.startsWith(prefix)) return;
 
     var commands = client.commands.get(command.slice(prefix.length));
 
