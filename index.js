@@ -52,7 +52,7 @@ client.on("guildMemberAdd", member =>{
 client.on("ready", async () => {
 
     console.log(`${client.user.username} is online.`);
-    client.user.setActivity("Looking for commands...", { type: "CUSTOM_STATUS" });
+    client.user.setActivity("!!help", { type: "LISTENING" });
 
 });
 
