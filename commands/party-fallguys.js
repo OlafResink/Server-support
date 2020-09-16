@@ -22,8 +22,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: "party",
+    name: "party-fallguys",
     category: "main",
     description: "sends a party request.",
-    use: "`!!party`"
+    use: "`!!party-fallguys`"
 }
