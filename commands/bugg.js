@@ -4,8 +4,7 @@ const Trello = require("trello");
 
 module.exports.run = async (client, message, args) => {
 
-
-    message.channel.send("I'm sorry, i have some problems with the host. Please use my mentor @testbot *(prefix ><)* when he is online, so your report can be send to our trello so we can work on it. If the bot is offline and you can't wait for it, please send your bugg to @P_p__n.");
+    message.channel.send("I'm sorry, i have some problems with the host. Please use my mentor <@754899858380554311> *(prefix ><)* when he is online, so your report can be send to our trello so we can work on it. If the bot is offline and you can't wait for it, please send your bugg to <@362613864321384450>.");
 
     /*
         message.delete();
