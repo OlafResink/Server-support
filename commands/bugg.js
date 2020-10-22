@@ -12,8 +12,6 @@ module.exports.run = async (client, message, args) => {
     var reportChannel = message.member.guild.channels.cache.get("758326142813077544");
     if (!reportChannel) return message.reply("Woops, something went wrong... Please contact an admin.");
 
-    reportChannel.send(response);
-
 
     //trello
     var apiKey = botConfig.trelloApiKey;
@@ -31,9 +29,11 @@ module.exports.run = async (client, message, args) => {
 
     try {
         Trello.card.create(data);
+        reportChannel.send(response);
     } catch (error) {
         if (error) {
             console.log(error);
+            reportChannel.send("something went wrong. We didn't get your repot in our trello. Please try again or contact an admin.");
         }
     }
 
