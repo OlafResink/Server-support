@@ -12,6 +12,7 @@ module.exports.run = async (client, message, args) => {
 
     var reportChannel = message.member.guild.channels.cache.get("758326142813077544");
     if (!reportChannel) return message.reply("Woops, something went wrong... Please contact an admin.");
+    var errorChannel = message.member.guild.channels.cache.get("754059320974377030");
 
 
     //trello
@@ -26,13 +27,16 @@ module.exports.run = async (client, message, args) => {
 
     };
 
-    try {
-        trello.addCard(data);
-        reportChannel.send(response);
-    } catch (error) {
-        console.log(error);
-        reportChannel.send("something went wrong. We didn't get your repot in our trello. Please try again or contact an admin.");
-    }
+    trello.addCard(data, function (error, trelloCard) {
+        if (error) {
+            console.log(error);
+            reportChannel.send("something went wrong. We didn't get your repot in our trello. Please try again or contact an admin.");
+            errorChannel.send(error);
+        } else {
+            reportChannel.send(response);
+        }
+
+    });
 }
 
 module.exports.help = {
