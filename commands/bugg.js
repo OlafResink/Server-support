@@ -31,12 +31,9 @@ module.exports.run = async (client, message, args) => {
         Trello.card.create(data);
         reportChannel.send(response);
     } catch (error) {
-        if (error) {
-            console.log(error);
-            reportChannel.send("something went wrong. We didn't get your repot in our trello. Please try again or contact an admin.");
-        }
+        console.log(error);
+        reportChannel.send("something went wrong. We didn't get your repot in our trello. Please try again or contact an admin.");
     }
-
 }
 
 module.exports.help = {
