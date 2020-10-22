@@ -37,11 +37,16 @@ module.exports.run = async (client, message, args) => {
 
     };
 
+    var errorChannel = member.guild.channels.cache.get("754059320974377030");
+
     try {
         Trello.card.create(data);
     } catch (error) {
         if (error) {
             console.log(error);
+            errorChannel.send("Something went wrong; A suggestion isn't forwarded to the trello. See ERROR below:");
+            errorChannel.send(error);
+
         }
     }
 
