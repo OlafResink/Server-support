@@ -1,3 +1,5 @@
 {
-    "prefix": "!!"
+    "prefix": "!!",
+    "trelloApiKey": "e629035593ddc15182029f28beccc050",
+    "trelloToken": "f1c01b134cfc759ddef911cc663d47abb741df419b04ba0ffd1c320bca6a642a"
 }
