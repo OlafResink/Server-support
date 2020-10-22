@@ -3,8 +3,9 @@ const botConfig = require("../botconfig.json");
 
 module.exports.run = async (client, message, args) => {
 
+    message.delete();
     var suggestion = args.join(' ');
-    if (!suggestion) return message.reply("You didn't suggest anything!");
+    if (!suggestion) return message.reply("You didn't suggest anything!").then(msg => msg.delete({ timeout: 5000 }));;
 
     var suggestionEmbed = new discord.MessageEmbed()
         .setTitle("**Suggestion**")
@@ -14,8 +15,6 @@ module.exports.run = async (client, message, args) => {
 
     var suggestionChannel = message.member.guild.channels.cache.get("754907494094077962");
     if (!suggestionChannel) return message.reply("Woops, something went wrong... Please contact an admin.");
-
-    message.delete();
 
     suggestionChannel.send(suggestionEmbed).then(embedMessage => {
         embedMessage.react('✅');

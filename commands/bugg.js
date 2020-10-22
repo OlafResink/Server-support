@@ -3,18 +3,16 @@ const botConfig = require("../botconfig.json");
 
 module.exports.run = async (client, message, args) => {
 
+    message.delete();
     var report = args.join(' ');
-    if (!report) return message.reply("You didn't report anything!");
+    if (!report) return message.reply("You didn't report anything!").then(msg => msg.delete({ timeout: 5000 }));;
 
     var response = 'Report submitted!'
 
     var reportChannel = message.member.guild.channels.cache.get("758326142813077544");
     if (!reportChannel) return message.reply("Woops, something went wrong... Please contact an admin.");
 
-    message.delete();
-
     reportChannel.send(response);
-
 
 
     //trello

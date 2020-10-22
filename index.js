@@ -79,3 +79,52 @@ client.on("message", async message => {
 });
 
 client.login(process.env.token);
+
+//chatfilter; no chat except commands
+client.on("message", async message => {
+
+    var registerWhitelist = ["!!reregister", "!!help", "!!commands"];
+    var buggWhitelist = ["!!bugg"];
+    var suggestionWhitelist = ["!!suggestion"];
+    var Admin = message.guild.roles.cache.find(role => role.name === "Admin"); //const Admin = guild.roles.cache.find(role => role.id === "754040127394938971");
+    var bot = message.guild.roles.cache.find(role => role.name === "BOT");
+    var register4Channel = message.guild.channels.cache.find(channel => channel.id === "754000794197557269");
+    var buggReportChannel = message.guild.channels.cache.find(channel => channel.id === "758326142813077544");
+    var suggestionChannel = message.guild.channels.cache.find(channel => channel.id === "754907494094077962");
+
+    let foundInText = false;
+
+    if (message.channel.id === register4Channel.id) {
+        for (var i in registerWhitelist) {
+            if (message.content.toLowerCase().includes(registerWhitelist[i].toLowerCase())) foundInText = true;
+        }
+        if (message.member.roles.cache.has(Admin.id)) return;
+        if (message.member.roles.cache.has(bot.id)) return;
+        if (!foundInText) {
+            message.delete();
+            message.channel.send("You can only type certain commands here!").then(msg => msg.delete({ timeout: 5000 }));
+        }
+    }
+    if (message.channel.id === buggReportChannel.id) {
+        for (var i in buggWhitelist) {
+            if (message.content.toLowerCase().includes(buggWhitelist[i].toLowerCase())) foundInText = true;
+        }
+        if (message.member.roles.cache.has(Admin.id)) return;
+        if (message.member.roles.cache.has(bot.id)) return;
+        if (!foundInText) {
+            message.delete();
+            message.channel.send("Please use the pinned format to report!").then(msg => msg.delete({ timeout: 5000 }));
+        }
+    }
+    if (message.channel.id === suggestionChannel.id) {
+        for (var i in suggestionWhitelist) {
+            if (message.content.toLowerCase().includes(suggestionWhitelist[i].toLowerCase())) foundInText = true;
+        }
+        if (message.member.roles.cache.has(Admin.id)) return;
+        if (message.member.roles.cache.has(bot.id)) return;
+        if (!foundInText) {
+            message.delete();
+            message.channel.send("Please post suggestions using the pinned format!").then(msg => msg.delete({ timeout: 5000 }));
+        }
+    }
+});
