@@ -27,7 +27,7 @@ module.exports.run = async (client, message, args) => {
     };
 
     try {
-        trello.card.create(data);
+        trello.addCard(data);
         reportChannel.send(response);
     } catch (error) {
         console.log(error);
