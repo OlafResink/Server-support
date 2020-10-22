@@ -1,5 +1,8 @@
 const discord = require("discord.js");
 const botConfig = require("../botconfig.json");
+const apiKey = botConfig.trelloApiKey;
+const oauthToken = botConfig.trelloToken;
+const Trello = require("trello-node-api")(apiKey, oauthToken);
 
 module.exports.run = async (client, message, args) => {
 
@@ -14,11 +17,6 @@ module.exports.run = async (client, message, args) => {
 
 
     //trello
-    var apiKey = botConfig.trelloApiKey;
-    var oauthToken = botConfig.trelloToken;
-
-    var Trello = require('trello-node-api')(apiKey, oauthToken);
-
     var data = {
         name: `${message.author.name}`,
         desc: `${report}`,
